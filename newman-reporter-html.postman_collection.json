@@ -1,0 +1,757 @@
+{
+	"info": {
+		"_postman_id": "72769132-1fdd-42a6-9cb5-046b3b286ed5",
+		"name": "newman-reporter-html",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16548351",
+		"_collection_link": "https://martian-shadow-783854.postman.co/workspace/Newman-Reporter~0df49665-9bb4-4004-976d-47d6e685c8bc/collection/16548351-72769132-1fdd-42a6-9cb5-046b3b286ed5?action=share&source=collection_link&creator=16548351"
+	},
+	"item": [
+		{
+			"name": "user can't login with invalid email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 403\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 499]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the body matches string from response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"user not found\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.\",\r\n    \"password\": \"cityslicka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user can't login with invalid password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the body matches string from response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"QpwL5tke4Pnpja7X4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"gsdfsf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user can't login with valid email and invalid password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the body matches string from response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"QpwL5tke4Pnpja7X4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"gtyu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user can't login with invalid email and valid password",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 403\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([400, 499]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the body matches string from response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"user not found\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"Bad Request\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.\",\r\n    \"password\": \"cityslicka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the body matches string from response body\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"QpwL5tke4Pnpja7X4\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/login",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var jsonData=pm.response.json();\r",
+							"var userId= jsonData.id\r",
+							"pm.collectionVariables.set(\"id\",userId)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Generate random name and job using Faker.js\r",
+							"const randomName = pm.variables.replaceIn(\"{{$randomFullName}}\");\r",
+							"const randomJob = pm.variables.replaceIn(\"{{$randomJobTitle}}\");\r",
+							"\r",
+							"// Set these as collection variables\r",
+							"pm.collectionVariables.set(\"randomName\", randomName);\r",
+							"pm.collectionVariables.set(\"randomJob\", randomJob);\r",
+							"\r",
+							"// Log for debugging purposes\r",
+							"console.log(\"Generated Name: \" + randomName);\r",
+							"console.log(\"Generated Job: \" + randomJob);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{randomName}}\",\r\n    \"job\": \"{{randomJob}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/users",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get single user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/users/7",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"users",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get list users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/users?page=2",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"var jsonData=pm.response.json();\r",
+							"var authToken= jsonData.token\r",
+							"pm.collectionVariables.set(\"token\",authToken)\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/users/2",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Check the status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time check\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the POST method request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([204, 299]);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the header\", function () {\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check the status code is Unauthorized\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}api/users/2",
+					"host": [
+						"{{baseUrl}}api"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://reqres.in/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": null
+		},
+		{
+			"key": "id",
+			"value": "205"
+		},
+		{
+			"key": "randomName",
+			"value": "Maryann Mann"
+		},
+		{
+			"key": "randomJob",
+			"value": "Customer Integration Engineer"
+		}
+	]
+}
