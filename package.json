@@ -1,0 +1,15 @@
+{
+  "name": "newman-reporter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node report.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "newman": "^6.2.1"
+  }
+}
