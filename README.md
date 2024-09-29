@@ -77,3 +77,17 @@ In order to enable this reporter, specify htmlextra in Newman's -r or --reporter
 it will be created as part of the Newman run.
 
       newman run collection.json -r htmlextra
+
+## newman-reporter-html
+
+![image](https://github.com/user-attachments/assets/185e3bb6-9ca2-4c3c-bcf4-eeeaa575270f)
+
+![image](https://github.com/user-attachments/assets/2becd32d-1865-4eda-bbd3-5ef64ac10cf6)
+
+
+
+
+
+
+
+
